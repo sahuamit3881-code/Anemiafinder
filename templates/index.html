@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Multimodal Anemia Screening Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="brand"><span class="brand-mark">🩸</span> AnemiaScope</div>
+  <span class="badge">Hackathon Prototype</span>
+</nav>
+
+<header class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">Non-invasive · Multimodal · AI-assisted</span>
+    <h1>See what your eyes, nails, and tongue can tell you about anemia.</h1>
+    <p>Upload photos of three sites — the lower eyelid, fingernail beds, and tongue —
+       and get a fused risk estimate in seconds. No blood draw required.</p>
+    <a href="#upload" class="cta-button">Start Screening <span aria-hidden="true">↓</span></a>
+  </div>
+
+  <div class="hero-monitor" aria-hidden="true">
+    <div class="monitor-screen">
+      <svg viewBox="0 0 300 100" class="pulse-svg" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="pulseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FF6B6B" />
+            <stop offset="100%" stop-color="#0EA5B7" />
+          </linearGradient>
+        </defs>
+        <path class="pulse-path"
+              d="M0 50 L55 50 L67 18 L79 82 L91 50 L150 50 L162 30 L174 70 L186 50 L300 50" />
+      </svg>
+    </div>
+    <div class="monitor-label">LIVE VITALS SIMULATION</div>
+  </div>
+</header>
+
+<main>
+
+  <section class="section" id="learn">
+    <h2 class="section-title">Understanding Anemia</h2>
+    <p class="section-sub">What it is, how it shows up in the body, and why we screen these three spots.</p>
+
+    <div class="tabs">
+      <div class="tab-list" role="tablist">
+        <button class="tab-btn active" data-tab="what" role="tab" aria-selected="true">🩸 What is Anemia?</button>
+        <button class="tab-btn" data-tab="symptoms" role="tab" aria-selected="false">⚠️ Common Symptoms</button>
+        <button class="tab-btn" data-tab="why" role="tab" aria-selected="false">🔬 Why These Spots?</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-what" role="tabpanel">
+        <div class="info-card">
+          <h3>A shortage of healthy oxygen carriers</h3>
+          <p>Anemia occurs when the body doesn't have enough healthy red blood cells, or enough
+             <strong>hemoglobin</strong> — the iron-rich protein inside red blood cells that binds
+             oxygen and carries it from the lungs to every tissue in the body. When hemoglobin
+             drops, tissues receive less oxygen, and the body compensates in ways that produce
+             the visible and felt symptoms of anemia.</p>
+          <p>It's one of the most common blood conditions worldwide, and is especially prevalent
+             among women, adolescents, and young children — often linked to iron deficiency,
+             blood loss, or poor absorption of nutrients.</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-symptoms" role="tabpanel">
+        <div class="symptom-grid">
+          <div class="symptom-card" style="--accent:#C81E3A;">
+            <div class="symptom-emoji">😴</div>
+            <h4>Fatigue</h4>
+            <p>Persistent tiredness even after rest.</p>
+          </div>
+          <div class="symptom-card" style="--accent:#0EA5B7;">
+            <div class="symptom-emoji">💪</div>
+            <h4>Weakness</h4>
+            <p>Reduced stamina for everyday tasks.</p>
+          </div>
+          <div class="symptom-card" style="--accent:#FF6B6B;">
+            <div class="symptom-emoji">🎨</div>
+            <h4>Pale Skin</h4>
+            <p>Lighter skin, lips, or inner eyelids.</p>
+          </div>
+          <div class="symptom-card" style="--accent:#FFB627;">
+            <div class="symptom-emoji">🥶</div>
+            <h4>Cold Hands &amp; Feet</h4>
+            <p>Poor peripheral circulation.</p>
+          </div>
+          <div class="symptom-card" style="--accent:#1FA97A;">
+            <div class="symptom-emoji">💫</div>
+            <h4>Dizziness</h4>
+            <p>Lightheadedness, especially standing up.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-why" role="tabpanel">
+        <div class="mechanism-card" style="--accent:#0EA5B7;">
+          <h4>👁️ Lower Eyelid (Conjunctiva)</h4>
+          <p>The inner eyelid is lined with a thin, translucent membrane sitting directly over a
+             dense capillary bed. With enough hemoglobin, it looks vividly red-pink; as hemoglobin
+             drops, the capillary redness fades and the membrane looks pale — a sign clinicians
+             already check for during physical exams.</p>
+        </div>
+        <div class="mechanism-card" style="--accent:#FF6B6B;">
+          <h4>💅 Fingernail Beds</h4>
+          <p>The nail bed is another spot where skin is thin and capillaries sit close to the
+             surface. Healthy nail beds have a pink undertone from oxygenated blood; anemia can
+             leave them looking pale, and severe cases can even cause nail shape changes like
+             spooning.</p>
+        </div>
+        <div class="mechanism-card" style="--accent:#FFB627;">
+          <h4>👅 Tongue</h4>
+          <p>The tongue's surface is rich in small blood vessels and papillae. Iron and vitamin
+             B12 deficiency anemias often cause the tongue to appear pale or unusually smooth as
+             the papillae flatten, another classic bedside clue.</p>
+        </div>
+        <p class="tab-footnote">In short: all three sites share thin, translucent tissue over a
+           rich capillary network — making microvascular redness a visible proxy for hemoglobin
+           level.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="upload">
+    <h2 class="section-title">Upload Screening Photos</h2>
+    <p class="section-sub">Upload as many of the three as you can — the engine adapts to however many you provide.</p>
+
+    <div class="upload-grid">
+
+      <div class="upload-card" style="--accent:#0EA5B7;">
+        <div class="upload-card-head">
+          <span class="upload-emoji">👁️</span>
+          <h3>Lower Eyelid</h3>
+        </div>
+        <p class="upload-instruction">Gently pull down the lower eyelid and photograph the inner conjunctiva in natural light.</p>
+        <label class="dropzone" for="file-eyelid">
+          <input type="file" id="file-eyelid" data-region="eyelid" accept="image/png, image/jpeg" hidden />
+          <div class="dropzone-empty">
+            <span class="dropzone-icon">⬆</span>
+            <span>Click or drag image here</span>
+          </div>
+          <img class="dropzone-preview" alt="Eyelid preview" hidden />
+        </label>
+      </div>
+
+      <div class="upload-card" style="--accent:#FF6B6B;">
+        <div class="upload-card-head">
+          <span class="upload-emoji">💅</span>
+          <h3>Fingernail Beds</h3>
+        </div>
+        <p class="upload-instruction">Close-up of a bare (unpolished) fingernail bed under good, even lighting.</p>
+        <label class="dropzone" for="file-nail">
+          <input type="file" id="file-nail" data-region="nail" accept="image/png, image/jpeg" hidden />
+          <div class="dropzone-empty">
+            <span class="dropzone-icon">⬆</span>
+            <span>Click or drag image here</span>
+          </div>
+          <img class="dropzone-preview" alt="Nail preview" hidden />
+        </label>
+      </div>
+
+      <div class="upload-card" style="--accent:#FFB627;">
+        <div class="upload-card-head">
+          <span class="upload-emoji">👅</span>
+          <h3>Tongue</h3>
+        </div>
+        <p class="upload-instruction">Clear photo of the tongue surface, tip and sides visible.</p>
+        <label class="dropzone" for="file-tongue">
+          <input type="file" id="file-tongue" data-region="tongue" accept="image/png, image/jpeg" hidden />
+          <div class="dropzone-empty">
+            <span class="dropzone-icon">⬆</span>
+            <span>Click or drag image here</span>
+          </div>
+          <img class="dropzone-preview" alt="Tongue preview" hidden />
+        </label>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="analyze">
+    <h2 class="section-title">Run the Screening</h2>
+    <p class="section-sub">Fuses whichever images you've provided into a single estimated risk score.</p>
+
+    <div class="analyze-row">
+      <button id="analyze-btn" class="cta-button large" type="button">
+        Analyze Now <span id="ready-count">(0/3 images ready)</span>
+      </button>
+    </div>
+
+    <div id="alert-box" class="alert-box" hidden></div>
+
+    <div id="results" class="results" hidden>
+      <div class="gauge-wrap">
+        <svg viewBox="0 0 180 180" class="gauge-svg">
+          <circle class="gauge-track" cx="90" cy="90" r="70" />
+          <circle id="gauge-fill" class="gauge-fill" cx="90" cy="90" r="70" />
+        </svg>
+        <div class="gauge-center">
+          <span id="gauge-value">0%</span>
+          <span class="gauge-label">Risk Score</span>
+        </div>
+      </div>
+
+      <div class="stat-chips">
+        <div class="chip">
+          <span class="chip-value" id="stat-modalities">0/3</span>
+          <span class="chip-label">Modalities Used</span>
+        </div>
+        <div class="chip">
+          <span class="chip-value" id="stat-confidence">0%</span>
+          <span class="chip-label">Confidence</span>
+        </div>
+      </div>
+
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="disclaimer">
+  <b>Disclaimer:</b> This application is an educational hackathon prototype only. It is
+  <b>not</b> a diagnostic medical device and has not been clinically validated. It must not be
+  used to make real medical decisions. If you have concerns about anemia or your health, please
+  consult a qualified healthcare professional and get a proper laboratory blood test.
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
