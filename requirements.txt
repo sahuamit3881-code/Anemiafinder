@@ -2,3 +2,13 @@ Flask>=3.0,<4.0
 gunicorn>=21.2,<23
 Pillow>=10.0
 numpy>=1.24
+opencv-python-headless>=4.9
+segmentation-models-pytorch>=0.3.3
+
+# NOTE: for local (non-Docker) development this will pull the default
+# PyPI wheels, which include CUDA support and are large (~2GB combined).
+# The Dockerfile installs the much smaller CPU-only builds instead —
+# see the RUN step there if you want to mirror that locally:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+torch>=2.2
+torchvision>=0.17
